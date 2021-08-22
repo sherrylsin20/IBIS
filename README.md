@@ -24,13 +24,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
-[![Contributors][contributors-shield]][https://github.com/sherrylsin20/IBIS/graphs/contributors]
-[![Forks][forks-shield]][https://github.com/sherrylsin20/IBIS/network/members]
-[![Stargazers][stars-shield]][https://github.com/sherrylsin20/IBIS/stargazers]
-[![Issues][issues-shield]][[https://github.com/sherrylsin20/IBIS/issues]
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/sherryl-sugiono-sindarto-591428172/]
 
 
 
@@ -38,7 +32,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/sherrylsin20/ibis">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/sherrylsin20/IBIS/blob/development/assets/images/ibis_logo.png" alt="IBIS Logo" width="80" height="80">
   </a>
 
   <h3 align="center">IBIS: Indonesian Sign Language System Translator</h3>
@@ -189,13 +183,13 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/sherrylsin20/repo.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/sherrylsin20/IBIS.svg?style=for-the-badge
 [contributors-url]: [https://github.com/sherrylsin20/IBIS/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/sherrylsin20/repo.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/sherrylsin20/IBIS.svg?style=for-the-badge
 [forks-url]: https://github.com/sherrylsin20/IBIS/network/members
-[stars-shield]: https://img.shields.io/github/stars/sherrylsin20/repo.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/sherrylsin20/IBIS.svg?style=for-the-badge
 [stars-url]: https://github.com/sherrylsin20/IBIS/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sherrylsin20/repo.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/sherrylsin20/IBIS.svg?style=for-the-badge
 [issues-url]: https://github.com/sherrylsin20/IBIS/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/sherryl-sugiono-sindarto-591428172/
