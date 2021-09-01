@@ -42,12 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               Text(
                 'ibis',
-                style: TextStyle(
-                    fontFamily: 'Monsterrat',
-                    fontSize: 32,
-                    letterSpacing: 10,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white),
+                style: Theme.of(context).textTheme.headline1,
               ),
             ],
           ),

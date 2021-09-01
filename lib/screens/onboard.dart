@@ -69,17 +69,10 @@ class _OnboardPageState extends State<OnboardPage> {
               child: page == pagesItem.length - 1
                   ? TextButton(
                       onPressed: () {
-                        Navigator.popAndPushNamed(context, '/login');
-                        /*Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()));*/
+                        Navigator.popAndPushNamed(context, '/home');
                       },
                       child: Text("Go to app",
-                          style: TextStyle(
-                              color: Color(0xFF6597AF),
-                              fontSize: 16,
-                              fontFamily: 'Montserrat')),
+                          style: Theme.of(context).textTheme.headline6),
                     )
                   : Container(
                       height: 50,
@@ -133,7 +126,7 @@ class _OnboardPageState extends State<OnboardPage> {
             ),
             Text(
               caption,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.justify,
             ),
           ]),
