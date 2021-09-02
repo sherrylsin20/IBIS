@@ -90,6 +90,7 @@ class _OnboardPageState extends State<OnboardPage> {
                         ),
                         shape: CircleBorder(
                             side: BorderSide(
+                          color: Colors.transparent,
                           width: 0,
                         )),
                       ),

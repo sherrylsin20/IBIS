@@ -59,7 +59,14 @@ class _HomePageState extends State<HomePage> {
         itemCount: courses.length,
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/course_details', arguments: {
+                'title': courses[index].title,
+                'desc': courses[index].description,
+                'progress': courses[index].progress,
+                'lessons': courses[index].lesson,
+              });
+            },
             child: cardList(
                 courses[index].title,
                 courses[index].description,
