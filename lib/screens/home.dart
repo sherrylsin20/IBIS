@@ -31,10 +31,27 @@ class _HomePageState extends State<HomePage> {
                 'Mulai belajar Sistem Isyarat Bahasa Indonesia',
                 style: Theme.of(context).textTheme.caption,
               ),
+              cardList(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget cardList() {
+    return Stack(
+      alignment: Alignment.centerLeft,
+      children: <Widget>[
+        Container(
+          width: double.infinity,
+          height: 100,
+          decoration: BoxDecoration(
+            color: Color(0xFF6597AF),
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ],
     );
   }
 }
