@@ -156,11 +156,6 @@ class _OnboardPageState extends State<OnboardPage> {
     );
   }
 
-  Future navigateToLogin(context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
-  }
-
   pageChangeCallback(int lpage) {
     setState(() {
       page = lpage;
