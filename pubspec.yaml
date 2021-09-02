@@ -55,6 +55,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+
+  # Images
     - assets/images/ibis_logo_white.png
     - assets/images/ibis_logo.png
     - assets/images/learn.png
@@ -63,6 +65,9 @@ flutter:
     - assets/images/course_1.png
     - assets/images/course_2.png
     - assets/images/course_3.png
+
+  # JSON
+    - assets/data/list_courses.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

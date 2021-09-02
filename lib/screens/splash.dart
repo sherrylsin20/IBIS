@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Color(0xFF6597AF),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +42,13 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               Text(
                 'ibis',
-                style: Theme.of(context).textTheme.headline1,
+                style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 32,
+                  color: Colors.white,
+                  letterSpacing: 10,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
