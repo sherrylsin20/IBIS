@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:ibis/models/courses.dart';
 
-class ReadJSON {
+class Services {
   Future<String> _loadJson() async {
     return await rootBundle.loadString('assets/data/list_courses.json');
   }
 
-  Future<List<Courses>> _getData() async {
+  Future<List<Courses>> getData() async {
     List<Courses> list;
 
     var data = jsonDecode(await _loadJson());

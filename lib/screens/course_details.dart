@@ -79,7 +79,13 @@ class _CourseDetailsState extends State<CourseDetails> {
       itemCount: lessons.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/lesson_details', arguments: {
+              'name': lessons[index].name,
+              'desc': lessons[index].explanation,
+              'link': lessons[index].link,
+            });
+          },
           child: cardList(lessons[index].name, lessons[index].status),
         );
       },

@@ -10,7 +10,7 @@ class Lessons {
     return Lessons(
         name: json['name'],
         explanation: json['explanation'],
-        link: json['link'],
+        link: json['video'],
         status: json['status']);
   }
 }

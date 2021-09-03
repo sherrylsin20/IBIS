@@ -11,7 +11,7 @@ class Courses {
       {this.title, this.description, this.length, this.progress, this.lesson});
 
   factory Courses.fromJson(Map<String, dynamic> json) {
-    var list = json['lesson'];
+    var list = json['lessons'] as List;
     List<Lessons> lessonList = list.map((i) => Lessons.fromJson(i)).toList();
 
     return Courses(
