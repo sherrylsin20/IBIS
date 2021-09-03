@@ -34,16 +34,19 @@ class _HomePageState extends State<HomePage> {
                 'Mulai belajar Sistem Isyarat Bahasa Indonesia',
                 style: Theme.of(context).textTheme.caption,
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              FutureBuilder<List<Courses>>(
-                future: Services().getData(),
-                builder: (context, snapshot) {
-                  return snapshot.data != null
-                      ? courseList(snapshot.data)
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        );
-                },
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.65,
+                child: FutureBuilder<List<Courses>>(
+                  future: Services().getData(),
+                  builder: (context, snapshot) {
+                    return snapshot.data != null
+                        ? courseList(snapshot.data)
+                        : Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  },
+                ),
               ),
             ],
           ),
@@ -53,29 +56,27 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget courseList(List<Courses> courses) {
-    return SingleChildScrollView(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: courses.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/course_details', arguments: {
-                'title': courses[index].title,
-                'desc': courses[index].description,
-                'progress': courses[index].progress,
-                'lessons': courses[index].lesson,
-              });
-            },
-            child: cardList(
-                courses[index].title,
-                courses[index].description,
-                courses[index].length,
-                courses[index].progress.toString(),
-                'assets/images/course_' + (index + 1).toString() + '.png'),
-          );
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: courses.length,
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, '/course_details', arguments: {
+              'title': courses[index].title,
+              'desc': courses[index].description,
+              'progress': courses[index].progress,
+              'lessons': courses[index].lesson,
+            });
+          },
+          child: cardList(
+              courses[index].title,
+              courses[index].description,
+              courses[index].length,
+              courses[index].progress.toString(),
+              'assets/images/course_' + (index + 1).toString() + '.png'),
+        );
+      },
     );
   }
 

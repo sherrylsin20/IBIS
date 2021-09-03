@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ibis/screens/course_details.dart';
+import 'package:ibis/screens/home.dart';
+import 'package:ibis/screens/lesson_details.dart';
+import 'package:ibis/screens/onboard.dart';
+import 'package:ibis/screens/splash.dart';
 
 void main() {
   runApp(IBIS());
@@ -8,7 +13,7 @@ class IBIS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'IBIS',
       theme: ThemeData(
         textTheme: TextTheme(
           headline1: TextStyle(
@@ -73,8 +78,13 @@ class IBIS extends StatelessWidget {
           ),
         ),
       ),
-      //routes: {}
-      //home: SplashScreen(),
+      home: SplashScreen(),
+      routes: {
+        '/onboard': (context) => OnboardPage(),
+        '/home': (context) => HomePage(),
+        '/course_details': (context) => CourseDetails(),
+        '/lesson_details': (context) => LessonDetails(),
+      },
     );
   }
 }

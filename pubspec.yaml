@@ -38,6 +38,10 @@ dependencies:
   # Provider
   provider: ^5.0.0
 
+  # Video
+  chewie: ^1.2.2
+  video_player: ^2.1.15
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,6 +70,9 @@ flutter:
     - assets/images/course_2.png
     - assets/images/course_3.png
 
+  # Videos
+    - assets/videos/test_video.mp4
+
   # JSON
     - assets/data/list_courses.json
 
@@ -80,7 +87,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Bold.ttf
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/static/Oswald-Bold.ttf
+        - asset: assets/fonts/static/Oswald-Regular.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
