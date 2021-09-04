@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ibis/models/lessons.dart';
+import 'package:ibis/screens/lesson_details.dart';
 
 class CourseDetails extends StatefulWidget {
   @override
@@ -7,6 +8,13 @@ class CourseDetails extends StatefulWidget {
 }
 
 class _CourseDetailsState extends State<CourseDetails> {
+  var _counter = 0;
+
+  void initState() {
+    _counter++;
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     final courses = ModalRoute.of(context).settings.arguments as Map;
     return SafeArea(
@@ -40,7 +48,9 @@ class _CourseDetailsState extends State<CourseDetails> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    courses['progress'].toString() + ' %',
+                    double.parse(courses['progress']) >= 100
+                        ? '100 %'
+                        : courses['progress'].toString(),
                     style: Theme.of(context).textTheme.caption,
                   ),
                   SizedBox(
@@ -50,7 +60,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                       child: LinearProgressIndicator(
-                        value: courses['progress'].toDouble() / 100,
+                        value: double.parse(courses['progress']) / 100,
                         minHeight: 10,
                         backgroundColor: Color(0xFFDDDDDD),
                         valueColor: AlwaysStoppedAnimation(Color(0xFF6597AF)),
@@ -63,7 +73,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                 height: MediaQuery.of(context).size.height * 0.08,
               ),
               Expanded(
-                child: lessonList(courses['lessons']),
+                child: lessonList(courses['lessons'], courses['title'],
+                    courses['progress'], courses['lessons'].length),
               ),
             ],
           ),
@@ -72,7 +83,7 @@ class _CourseDetailsState extends State<CourseDetails> {
     );
   }
 
-  Widget lessonList(lessons) {
+  Widget lessonList(lessons, title, progress, length) {
     return ListView.builder(
       physics: AlwaysScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -84,7 +95,13 @@ class _CourseDetailsState extends State<CourseDetails> {
               'name': lessons[index].name,
               'desc': lessons[index].explanation,
               'link': lessons[index].link,
-            });
+              'status': lessons[index].status,
+              'title': title,
+              'progress': progress,
+              'length': length,
+            }).then((_) => setState(() {
+                  initState();
+                }));
           },
           child: cardList(lessons[index].name, lessons[index].status),
         );

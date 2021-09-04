@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:ibis/services/service.dart';
 import 'package:ibis/widget/video_player.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
 
 class LessonDetails extends StatefulWidget {
@@ -9,6 +14,13 @@ class LessonDetails extends StatefulWidget {
 }
 
 class _LessonDetailsState extends State<LessonDetails> {
+  Map<String, dynamic> jsonFile;
+
+  @override
+  void initstate() {
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     final lessons = ModalRoute.of(context).settings.arguments as Map;
 
@@ -42,8 +54,21 @@ class _LessonDetailsState extends State<LessonDetails> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
+                onPressed: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setBool('edited', true);
+                  if (lessons['status']) {
+                    print('status = true');
+                    Navigator.pop(context);
+                  } else {
+                    Services().updatedata(
+                        lessons['title'],
+                        double.parse(lessons['progress']),
+                        lessons['name'],
+                        lessons['length']);
+                    Navigator.pop(context);
+                  }
                 },
                 style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
