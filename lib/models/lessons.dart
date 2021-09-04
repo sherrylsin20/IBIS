@@ -1,8 +1,8 @@
 class Lessons {
-  final String name;
-  final String explanation;
-  final String link;
-  final bool status;
+  String name;
+  String explanation;
+  String link;
+  bool status;
 
   Lessons({this.name, this.explanation, this.link, this.status});
 
@@ -13,4 +13,10 @@ class Lessons {
         link: json['video'],
         status: json['status']);
   }
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'explanation': explanation,
+        'video': link,
+        'status': status
+      };
 }

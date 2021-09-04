@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:ibis/models/lessons.dart';
 
 class Courses {
-  final String title;
-  final String description;
-  final String length;
-  final int progress;
-  final List<Lessons> lesson;
+  String title;
+  String description;
+  String length;
+  double progress;
+  List<Lessons> lesson;
 
   Courses(
       {this.title, this.description, this.length, this.progress, this.lesson});
@@ -21,4 +23,12 @@ class Courses {
         progress: json['progress'],
         lesson: lessonList);
   }
+
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'description': description,
+        'length': length,
+        'progress': progress,
+        'lessons': List<dynamic>.from(lesson.map((e) => e.toJson())),
+      };
 }

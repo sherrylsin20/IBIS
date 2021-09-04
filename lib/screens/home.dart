@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ibis/models/courses.dart';
-import 'package:ibis/services/read_json.dart';
+import 'package:ibis/services/service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,6 +9,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  void initState() {
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -38,7 +43,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: MediaQuery.of(context).size.height * 0.65,
                 child: FutureBuilder<List<Courses>>(
-                  future: Services().getData(),
+                  future: dataSelect(),
                   builder: (context, snapshot) {
                     return snapshot.data != null
                         ? courseList(snapshot.data)
@@ -55,6 +60,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Future<List<Courses>> dataSelect() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _edited = (prefs.getBool('edited') ?? false);
+
+    if (_edited) {
+      return Services().getData(false);
+    } else {
+      return Services().getData(true);
+    }
+  }
+
   Widget courseList(List<Courses> courses) {
     return ListView.builder(
       shrinkWrap: true,
@@ -65,15 +81,19 @@ class _HomePageState extends State<HomePage> {
             Navigator.pushNamed(context, '/course_details', arguments: {
               'title': courses[index].title,
               'desc': courses[index].description,
-              'progress': courses[index].progress,
+              'progress': (courses[index].progress).toStringAsFixed(2),
               'lessons': courses[index].lesson,
+            }).then((_) {
+              setState(() {});
             });
           },
           child: cardList(
               courses[index].title,
               courses[index].description,
               courses[index].length,
-              courses[index].progress.toString(),
+              courses[index].progress >= 100
+                  ? 100
+                  : (courses[index].progress).toStringAsFixed(2),
               'assets/images/course_' + (index + 1).toString() + '.png'),
         );
       },
