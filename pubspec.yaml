@@ -73,9 +73,6 @@ flutter:
     - assets/images/course_2.png
     - assets/images/course_3.png
 
-  # Videos
-    - assets/videos/test_video.mp4
-
   # JSON
     - assets/data/list_courses.json
 

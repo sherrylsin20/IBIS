@@ -66,7 +66,8 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs.getBool('seen') ?? false);
 
-    if (_seen) {
+    if (!_seen) {
+      prefs.setBool('seen', true);
       Navigator.of(context).push(
           MaterialPageRoute(builder: (BuildContext context) => OnboardPage()));
     } else {

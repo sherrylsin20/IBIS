@@ -34,6 +34,8 @@ class Services {
 
   Future updatedata(
       String title, double progress, String name, int length) async {
+    print(title);
+    print(name);
     print(length);
     bool exist = false;
     List<Courses> list;
@@ -42,7 +44,7 @@ class Services {
     // Akses direktori data aplikasi
     Directory dir = await getExternalStorageDirectory();
     String path = dir.path;
-
+    print(path);
     // Check file ada ato belom
     File file = new File(path + '/list_courses.json');
     exist = file.existsSync();
@@ -59,10 +61,10 @@ class Services {
           100 / length;
 
       // Update status lesson
-      list.firstWhere(
-          (element) =>
-              element.lesson.firstWhere((e) => e.name == name).status = true,
-          orElse: () => null);
+      var index = list.indexWhere((element) => element.title == title);
+      print(index);
+      list[index].lesson.firstWhere((element) => element.name == name).status =
+          true;
 
       // Simpen updated file
       File jsonFile = File(path + '/list_courses.json');
@@ -76,12 +78,20 @@ class Services {
       var data = jsonDecode(await _loadJson());
       var res = data['courses'] as List;
       list = res.map<Courses>((json) => Courses.fromJson(json)).toList();
+      print(res);
 
       list.firstWhere((element) => element.title == title).progress +=
           (1 / length) * 100;
 
-      list.firstWhere((element) =>
-          element.lesson.firstWhere((e) => e.name == name).status = true);
+      var index = list.indexWhere((element) => element.title == title);
+      print(index);
+
+      list[index].lesson.firstWhere((element) => element.name == name).status =
+          true;
+
+      //list.firstWhere((element) =>
+      //element.lesson.firstWhere((e) => e.name == name).status = true);
+
       File jsonFile = File(path + '/list_courses.json');
       jsonFile.writeAsStringSync(json.encode(list));
     }
