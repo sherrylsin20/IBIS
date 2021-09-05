@@ -3,6 +3,7 @@ import 'package:ibis/screens/course_details.dart';
 import 'package:ibis/screens/home.dart';
 import 'package:ibis/screens/lesson_details.dart';
 import 'package:ibis/screens/onboard.dart';
+import 'package:ibis/screens/pageview.dart';
 import 'package:ibis/screens/splash.dart';
 
 void main() {
@@ -15,6 +16,32 @@ class IBIS extends StatelessWidget {
     return MaterialApp(
       title: 'IBIS',
       theme: ThemeData(
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          selectedItemColor: Color(0xFF6597AF),
+          unselectedItemColor: Color(0xFF868686),
+          selectedIconTheme: IconThemeData(
+            color: Color(0xFF6597AF),
+            size: 28,
+          ),
+          unselectedIconTheme: IconThemeData(
+            color: Color(0xFF868686),
+            size: 28,
+          ),
+          selectedLabelStyle: TextStyle(
+            fontFamily: 'Oswald',
+            fontSize: 12,
+            color: Color(0xFF6597AF),
+            fontWeight: FontWeight.normal,
+          ),
+          unselectedLabelStyle: TextStyle(
+            fontFamily: 'Oswald',
+            fontSize: 12,
+            color: Color(0xFF868686),
+            fontWeight: FontWeight.normal,
+          ),
+        ),
         textTheme: TextTheme(
           headline1: TextStyle(
               fontFamily: 'Montserrat',
@@ -81,7 +108,7 @@ class IBIS extends StatelessWidget {
       home: SplashScreen(),
       routes: {
         '/onboard': (context) => OnboardPage(),
-        '/home': (context) => HomePage(),
+        '/home': (context) => ScreenControl(),
         '/course_details': (context) => CourseDetails(),
         '/lesson_details': (context) => LessonDetails(),
       },

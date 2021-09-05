@@ -59,8 +59,9 @@ class _LessonDetailsState extends State<LessonDetails> {
                       await SharedPreferences.getInstance();
                   prefs.setBool('edited', true);
                   if (lessons['status']) {
-                    print('status = true');
-                    Navigator.pop(context);
+                    print(lessons['status']);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/home', ModalRoute.withName('/'));
                   } else {
                     Services().updatedata(
                         lessons['title'],
@@ -68,6 +69,7 @@ class _LessonDetailsState extends State<LessonDetails> {
                         lessons['name'],
                         lessons['length']);
                     Navigator.pop(context);
+                    Navigator.pop(context, 'Hello');
                   }
                 },
                 style: ButtonStyle(

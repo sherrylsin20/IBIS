@@ -50,7 +50,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                   Text(
                     double.parse(courses['progress']) >= 100
                         ? '100 %'
-                        : courses['progress'].toString(),
+                        : courses['progress'].toString() + '%',
                     style: Theme.of(context).textTheme.caption,
                   ),
                   SizedBox(

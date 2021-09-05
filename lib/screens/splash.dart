@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ibis/screens/home.dart';
 import 'package:ibis/screens/onboard.dart';
+import 'package:ibis/screens/pageview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -71,8 +72,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).push(
           MaterialPageRoute(builder: (BuildContext context) => OnboardPage()));
     } else {
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => ScreenControl()));
     }
   }
 }
