@@ -77,8 +77,8 @@ class _HomePageState extends State<HomePage> {
       itemCount: courses.length,
       itemBuilder: (context, index) {
         return InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, '/course_details', arguments: {
+          onTap: () async {
+            await Navigator.pushNamed(context, '/course_details', arguments: {
               'title': courses[index].title,
               'desc': courses[index].description,
               'progress': (courses[index].progress).toStringAsFixed(2),
