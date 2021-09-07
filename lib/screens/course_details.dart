@@ -103,7 +103,8 @@ class _CourseDetailsState extends State<CourseDetails> {
                   initState();
                 }));
           },
-          child: cardList(lessons[index].name, lessons[index].status),
+          child: Scrollbar(
+              child: cardList(lessons[index].name, lessons[index].status)),
         );
       },
     );
