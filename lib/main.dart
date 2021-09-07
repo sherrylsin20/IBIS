@@ -6,7 +6,8 @@ import 'package:ibis/screens/onboard.dart';
 import 'package:ibis/screens/pageview.dart';
 import 'package:ibis/screens/splash.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(IBIS());
 }
 
