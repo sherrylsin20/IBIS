@@ -84,18 +84,16 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<img src="https://github.com/othneildrew/Best-README-Template" width="600" height="300" />
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+IBIS: An Indonesian Sign Language System Real-time Translator. Features included in the application are real-time translation using front-rear camera and courses to help you learn sign language. Dark mode is available if you are more comfortable with it!
 
 
 ### Built With
 
-* [Flutter]()
-* [TensorFlow Lite]()
-* [TensorFlow Lite Object Detection]()
+* [Flutter](https://flutter.dev/)
+* [TensorFlow Lite](https://www.tensorflow.org/lite)
+* [TensorFlow Lite Object Detection](https://www.tensorflow.org/lite/tutorials/model_maker_object_detection)
 
 
 
@@ -107,23 +105,31 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+* Android Version > 5.0 (Lollipop)
+* Permission to access external storage (Saving courses progress)
+* Permission to access internet (Access courses video)
+* Permission to access camera (Translate SIBI in real-time)
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repository
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/sherrylsin20/IBIS.git
    ```
-2. Install NPM packages
+2. Install Dart and Flutter extensions on IDE
+    **VS Code** 
+    * Ctrl + Shift + x
+    * Select Dart and install
+    * Select Flutter and install
+3. Update package dependencies
    ```sh
-   npm install
+   flutter pub get
    ```
-
-
+3. Start android or flutter emulator in IDE / Enabling USB Debugging on an Android Device
+4. Run the application
+   ```sh
+   flutter install
+   ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -164,17 +170,15 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Sherryl Sugiono Sindarto - [sherrylsin20](https://linkedin.com/in/sherryl-sugiono-sindarto-591428172/) - sherrylsin20@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [IBIS: SIBI Real-time Translator](https://github.com/sherrylsin20/IBIS)
 
 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
 * []()
 
 
