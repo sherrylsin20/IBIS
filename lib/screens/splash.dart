@@ -69,11 +69,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (!_seen) {
       prefs.setBool('seen', true);
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (BuildContext context) => OnboardPage()));
+      Navigator.of(context).popAndPushNamed('/onboard');
     } else {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => ScreenControl()));
+      Navigator.of(context).popAndPushNamed('/home');
     }
   }
 }

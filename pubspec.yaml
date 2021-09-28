@@ -35,7 +35,7 @@ dependencies:
   # Shared Preferences
   shared_preferences: ^2.0.5
 
-  # Provider
+  # Provider state management
   provider: ^5.0.0
 
   # Video

@@ -7,6 +7,8 @@ class Template extends StatefulWidget {
 
 class _TemplateState extends State<Template> {
   Widget build(BuildContext context) {
-    return SafeArea();
+    return SafeArea(
+      child: Container(),
+    );
   }
 }

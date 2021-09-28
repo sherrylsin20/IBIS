@@ -86,7 +86,7 @@
 <p align="center">
   <img src="https://github.com/sherrylsin20/IBIS/blob/main/Banner.png" width="600" height="300" />
 
-  <p>IBIS: An Indonesian Sign Language System Real-time Translator. Features included in the application are real-time translation using front-rear camera and courses to help you learn sign language. Dark mode is available if you are more comfortable with it!
+  <p>IBIS: An Indonesian Sign Language System Real-time Translator. Features included in the application are real-time translation using front-rear camera and courses to help you learn sign language. 
   </p>
 </p>
 
