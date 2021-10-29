@@ -7,9 +7,16 @@ class CameraPage extends StatefulWidget {
 }
 
 class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
+  // Camera
   CameraController _cameraController;
   List<CameraDescription> _cameras;
   int selected = 0;
+
+  // Text editing controller
+  TextEditingController _textEditingController;
+
+  // Text array
+  List<String> translationText = [];
 
   @override
   void initState() {
@@ -20,6 +27,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
   @override
   void dispose() {
     _cameraController?.dispose();
+    _textEditingController?.dispose();
     super.dispose();
   }
 
@@ -32,8 +40,8 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
           height: double.infinity,
           width: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Center(
                 child: Text(
@@ -51,33 +59,85 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                           child: CircularProgressIndicator(),
                         ))
                   : null,
-              _cameraController.value.isInitialized
-                  ? new Container()
-                  : Center(
-                      child: CircularProgressIndicator(),
-                    ),
               cameraPrev(),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    IconButton(
-                      onPressed: _toggleCamera,
-                      icon: Icon(Icons.cameraswitch_rounded),
-                      iconSize: 32,
-                      color: Color(0xFF868686),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              Text(
+                'Hasil terjemahan',
+                style: Theme.of(context).textTheme.headline2,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.55,
+
+                    // Text field for collecting results from prediction
+                    child: TextField(
+                      enabled: false,
+                      style: Theme.of(context).textTheme.subtitle1,
+                      maxLines: 4,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                      ),
                     ),
-                    Text('Switch camera',
-                        style: TextStyle(
-                          fontFamily: 'Oswald',
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF868686),
-                        )),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          // Text-to-speech button
+                          TextButton(
+                            onPressed: () {},
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      side: BorderSide(
+                                          color: Color(0xFF6597AF),
+                                          width: 0.5))),
+                            ),
+                            child: Text('Text-to-speech',
+                                style: Theme.of(context).textTheme.headline6),
+                          ),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.005),
+
+                          // Clear text button
+                          TextButton(
+                            onPressed: () {
+                              _textEditingController?.clear();
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Color(0xFF6597AF)),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ),
+                            child: Text('Bersihkan teks',
+                                style: Theme.of(context).textTheme.headline5),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -86,17 +146,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     );
   }
 
-  Future<void> _initCamera() async {
-    _cameras = await availableCameras();
-    _cameraController = CameraController(_cameras[0], ResolutionPreset.medium);
-    _cameraController.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    });
-  }
-
+  // Camera widget
   Widget cameraPrev() {
     if (_cameraController == null || !_cameraController.value.isInitialized) {
       return Center(
@@ -105,24 +155,61 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
         ),
       );
     }
-    return Container(
-      height: MediaQuery.of(context).size.width,
-      width: MediaQuery.of(context).size.width,
-      child: ClipRRect(
-        child: OverflowBox(
-          alignment: Alignment.center,
-          child: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Container(
-                height: MediaQuery.of(context).size.width /
-                    _cameraController.value.aspectRatio,
-                child: CameraPreview(_cameraController)),
+    return Stack(
+      alignment: Alignment.topRight,
+      children: <Widget>[
+        Container(
+          height: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width,
+          child: ClipRRect(
+            child: OverflowBox(
+              alignment: Alignment.center,
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Container(
+                    height: MediaQuery.of(context).size.width /
+                        _cameraController.value.aspectRatio,
+                    child: CameraPreview(_cameraController)),
+              ),
+            ),
           ),
         ),
-      ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              onPressed: _toggleCamera,
+              icon: Icon(Icons.cameraswitch_rounded),
+              iconSize: 32,
+              color: Colors.white,
+            ),
+            Text('Switch camera',
+                style: TextStyle(
+                  fontFamily: 'Oswald',
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )),
+          ],
+        ),
+      ],
     );
   }
 
+  // Initialize camera
+  Future<void> _initCamera() async {
+    _cameras = await availableCameras();
+    _cameraController = CameraController(_cameras[0], ResolutionPreset.high);
+    _cameraController.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {});
+    });
+  }
+
+  // Function for switching camera
   Future<void> _toggleCamera() async {
     final CameraDescription cameraDescription =
         (_cameraController.description == _cameras[0])

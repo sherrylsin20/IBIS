@@ -35,7 +35,7 @@ dependencies:
   # Shared Preferences
   shared_preferences: ^2.0.5
 
-  # Provider
+  # Provider state management
   provider: ^5.0.0
 
   # Video
@@ -47,6 +47,10 @@ dependencies:
 
   # Camera
   camera: ^0.9.2+2
+
+  #GetX State Management
+  get: ^4.3.8
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:

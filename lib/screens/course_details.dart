@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ibis/models/lessons.dart';
-import 'package:ibis/screens/lesson_details.dart';
+import 'package:get/get.dart';
 
 class CourseDetails extends StatefulWidget {
   @override
@@ -16,7 +15,7 @@ class _CourseDetailsState extends State<CourseDetails> {
   }
 
   Widget build(BuildContext context) {
-    final courses = ModalRoute.of(context).settings.arguments as Map;
+    final courses = Get.arguments as Map;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -91,7 +90,7 @@ class _CourseDetailsState extends State<CourseDetails> {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '/lesson_details', arguments: {
+            Get.toNamed('/lesson_details', arguments: {
               'name': lessons[index].name,
               'desc': lessons[index].explanation,
               'link': lessons[index].link,
@@ -99,9 +98,7 @@ class _CourseDetailsState extends State<CourseDetails> {
               'title': title,
               'progress': progress,
               'length': length,
-            }).then((_) => setState(() {
-                  initState();
-                }));
+            }).then((_) => setState(() {}));
           },
           child: Scrollbar(
               child: cardList(lessons[index].name, lessons[index].status)),

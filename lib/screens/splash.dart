@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:ibis/screens/home.dart';
-import 'package:ibis/screens/onboard.dart';
-import 'package:ibis/screens/pageview.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key key, this.title}) : super(key: key);
@@ -63,17 +61,17 @@ class _SplashScreenState extends State<SplashScreen> {
     return Timer(duration, navigationPage);
   }
 
-  void navigationPage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
+  void navigationPage() {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    GetStorage box = GetStorage();
 
-    if (!_seen) {
-      prefs.setBool('seen', true);
-      Navigator.of(context).push(
-          MaterialPageRoute(builder: (BuildContext context) => OnboardPage()));
+    bool _seenSplash = box.read('seen') ?? false;
+
+    if (!_seenSplash) {
+      box.write('seen', true);
+      Get.offAllNamed('onboard');
     } else {
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => ScreenControl()));
+      Get.offAllNamed('/home');
     }
   }
 }

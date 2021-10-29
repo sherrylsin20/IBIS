@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ibis/models/pages.dart';
-import 'package:ibis/screens/home.dart';
 import 'dart:math';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:get/get.dart';
 
 class OnboardPage extends StatefulWidget {
   @override
@@ -69,7 +69,7 @@ class _OnboardPageState extends State<OnboardPage> {
               child: page == pagesItem.length - 1
                   ? TextButton(
                       onPressed: () {
-                        Navigator.popAndPushNamed(context, '/home');
+                        Get.offAllNamed('/home');
                       },
                       child: Text("Go to app",
                           style: Theme.of(context).textTheme.headline6),

@@ -1,11 +1,8 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ibis/models/courses.dart';
-import 'package:ibis/models/lessons.dart';
 
 import 'package:path_provider/path_provider.dart';
 
@@ -25,27 +22,25 @@ class Services {
     List<Courses> list;
 
     var data = status
-        ? jsonDecode(await _loadJson())
-        : jsonDecode(await _loadEditedJson());
-    var res = status ? data['courses'] as List : data;
+        ? jsonDecode(await _loadEditedJson())
+        : jsonDecode(await _loadJson());
+    var res = status ? data : data['courses'] as List;
     list = res.map<Courses>((json) => Courses.fromJson(json)).toList();
     return list;
   }
 
+  // Updating data
   Future updatedata(
       String title, double progress, String name, int length) async {
-    print(title);
-    print(name);
-    print(length);
     bool exist = false;
     List<Courses> list;
     print('Updating data');
 
-    // Akses direktori data aplikasi
+    // Accessing external storage directory
     Directory dir = await getExternalStorageDirectory();
     String path = dir.path;
     print(path);
-    // Check file ada ato belom
+    // Checking if file exists or not
     File file = new File(path + '/list_courses.json');
     exist = file.existsSync();
     print(exist);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ibis/screens/camera.dart';
 import 'package:ibis/screens/home.dart';
-import 'package:ibis/screens/settings.dart';
+import 'package:ibis/screens/information.dart';
 
 class ScreenControl extends StatefulWidget {
   @override
