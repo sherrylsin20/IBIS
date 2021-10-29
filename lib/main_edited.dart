@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
 import 'package:ibis/screens/course_details.dart';
-import 'package:ibis/screens/course_edited.dart';
-import 'package:ibis/screens/home.dart';
 import 'package:ibis/screens/lesson_details.dart';
-import 'package:ibis/screens/lesson_edited.dart';
 import 'package:ibis/screens/onboard.dart';
 import 'package:ibis/screens/pageview.dart';
 import 'package:ibis/screens/splash.dart';
 
-Future<void> main() async {
+Future<void> secondMain() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(IBIS());

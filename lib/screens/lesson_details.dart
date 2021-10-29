@@ -1,12 +1,10 @@
-import 'dart:convert';
-
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:ibis/controller/controller.dart';
 import 'package:ibis/services/service.dart';
 import 'package:ibis/widget/video_player.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video_player/video_player.dart';
 
 class LessonDetails extends StatefulWidget {
   @override
@@ -22,7 +20,9 @@ class _LessonDetailsState extends State<LessonDetails> {
   }
 
   Widget build(BuildContext context) {
-    final lessons = ModalRoute.of(context).settings.arguments as Map;
+    final lessons = Get.arguments as Map;
+    final controller = Get.put(IBISController());
+    GetStorage box = GetStorage();
 
     return SafeArea(
       child: Scaffold(
@@ -55,21 +55,18 @@ class _LessonDetailsState extends State<LessonDetails> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               TextButton(
                 onPressed: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  prefs.setBool('edited', true);
+                  box.write('updated', true);
                   if (lessons['status']) {
                     print(lessons['status']);
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/home', ModalRoute.withName('/'));
+                    Get.offAllNamed('/home');
                   } else {
-                    Services().updatedata(
+                    controller.updateJson(
                         lessons['title'],
                         double.parse(lessons['progress']),
                         lessons['name'],
                         lessons['length']);
-                    Navigator.pop(context);
-                    Navigator.pop(context, 'Hello');
+                    controller.update();
+                    Get.offAllNamed('/home');
                   }
                 },
                 style: ButtonStyle(

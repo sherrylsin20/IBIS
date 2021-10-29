@@ -15,6 +15,9 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
   // Text editing controller
   TextEditingController _textEditingController;
 
+  // Text array
+  List<String> translationText = [];
+
   @override
   void initState() {
     super.initState();
@@ -56,11 +59,6 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                           child: CircularProgressIndicator(),
                         ))
                   : null,
-              _cameraController.value.isInitialized
-                  ? new Container()
-                  : Center(
-                      child: CircularProgressIndicator(),
-                    ),
               cameraPrev(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,

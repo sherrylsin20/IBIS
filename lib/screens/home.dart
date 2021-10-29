@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ibis/models/courses.dart';
-import 'package:ibis/services/service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ibis/controller/controller.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,6 +15,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget build(BuildContext context) {
+    final controller = Get.put(IBISController());
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -42,14 +45,24 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Container(
                 height: MediaQuery.of(context).size.height * 0.65,
-                child: FutureBuilder<List<Courses>>(
-                  future: dataSelect(),
-                  builder: (context, snapshot) {
-                    return snapshot.data != null
-                        ? courseList(snapshot.data)
-                        : Center(
-                            child: CircularProgressIndicator(),
-                          );
+                child: GetX<IBISController>(
+                  init: controller,
+                  builder: (controller) {
+                    return FutureBuilder(
+                      future: controller.courseList.value,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return courseList(snapshot.data);
+                        }
+                        return Center(
+                          child: SizedBox(
+                              height: Get.height * 0.1,
+                              child: CircularProgressIndicator(
+                                color: Color(0xFF6597AF),
+                              )),
+                        );
+                      },
+                    );
                   },
                 ),
               ),
@@ -60,17 +73,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<List<Courses>> dataSelect() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _edited = (prefs.getBool('edited') ?? false);
-
-    if (_edited) {
-      return Services().getData(false);
-    } else {
-      return Services().getData(true);
-    }
-  }
-
   Widget courseList(List<Courses> courses) {
     return ListView.builder(
       shrinkWrap: true,
@@ -78,14 +80,12 @@ class _HomePageState extends State<HomePage> {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () async {
-            await Navigator.pushNamed(context, '/course_details', arguments: {
+            await Get.toNamed('/course_details', arguments: {
               'title': courses[index].title,
               'desc': courses[index].description,
               'progress': (courses[index].progress).toStringAsFixed(2),
               'lessons': courses[index].lesson,
-            }).then((_) {
-              setState(() {});
-            });
+            }).then((_) => setState(() {}));
           },
           child: cardList(
               courses[index].title,
