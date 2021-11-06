@@ -59,6 +59,11 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                           child: CircularProgressIndicator(),
                         ))
                   : null,
+              _cameraController.value.isInitialized
+                  ? new Container()
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    ),
               cameraPrev(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,

@@ -8,7 +8,7 @@ import 'package:ibis/models/courses.dart';
 import 'package:ibis/services/service.dart';
 import 'package:path_provider/path_provider.dart';
 
-class IBISController extends GetxController {
+class IBISPresenter extends GetxController {
   GetStorage storage = GetStorage();
   bool _updated;
   final courseList = Future.value().obs;
