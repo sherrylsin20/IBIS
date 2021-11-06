@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:ibis/models/courses.dart';
-import 'package:ibis/controller/controller.dart';
 import 'package:get/get.dart';
+import 'package:ibis/presenter/presenter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget build(BuildContext context) {
-    final controller = Get.put(IBISController());
+    final controller = Get.put(IBISPresenter());
 
     return SafeArea(
       child: Scaffold(
@@ -45,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Container(
                 height: MediaQuery.of(context).size.height * 0.65,
-                child: GetX<IBISController>(
+                child: GetX<IBISPresenter>(
                   init: controller,
                   builder: (controller) {
                     return FutureBuilder(

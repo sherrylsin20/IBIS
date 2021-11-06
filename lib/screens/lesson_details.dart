@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:ibis/controller/controller.dart';
-import 'package:ibis/services/service.dart';
+import 'package:ibis/presenter/presenter.dart';
 import 'package:ibis/widget/video_player.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LessonDetails extends StatefulWidget {
   @override
@@ -21,7 +19,7 @@ class _LessonDetailsState extends State<LessonDetails> {
 
   Widget build(BuildContext context) {
     final lessons = Get.arguments as Map;
-    final controller = Get.put(IBISController());
+    final controller = Get.put(IBISPresenter());
     GetStorage box = GetStorage();
 
     return SafeArea(
