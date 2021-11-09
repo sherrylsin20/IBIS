@@ -48,9 +48,12 @@ dependencies:
   # Camera
   camera: ^0.9.2+2
 
-  #GetX State Management
+  # GetX State Management
   get: ^4.3.8
   get_storage: ^2.0.3
+
+  # TensorFlow Lite
+  tflite_flutter: ^0.9.0
 
 dev_dependencies:
   flutter_test:
