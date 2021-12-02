@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,8 +8,15 @@ import 'package:ibis/screens/onboard.dart';
 import 'package:ibis/screens/pageview.dart';
 import 'package:ibis/screens/splash.dart';
 
+List<CameraDescription> cameras;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  try {
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    print('Error: $e.code\nError Message: $e.message');
+  }
   await GetStorage.init();
   runApp(IBIS());
 }

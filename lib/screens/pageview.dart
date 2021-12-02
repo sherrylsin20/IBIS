@@ -1,7 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:ibis/screens/camera.dart';
 import 'package:ibis/screens/home.dart';
 import 'package:ibis/screens/information.dart';
+import 'package:ibis/services/recognition.dart';
+import 'package:ibis/services/stats.dart';
+import 'package:ibis/widget/bounding_box.dart';
 
 class ScreenControl extends StatefulWidget {
   @override
@@ -9,6 +13,8 @@ class ScreenControl extends StatefulWidget {
 }
 
 class _ScreenControlState extends State<ScreenControl> {
+  List<Recognition> results;
+  Stats stats;
   int _page = 0;
   PageController _pageController =
       PageController(initialPage: 0, keepPage: true);
@@ -32,7 +38,16 @@ class _ScreenControlState extends State<ScreenControl> {
           onPageChanged: (index) {
             onPageChanged(index);
           },
-          children: <Widget>[HomePage(), CameraPage(), SettingsPage()],
+          children: <Widget>[
+            HomePage(),
+            Stack(
+              children: [
+                CameraPage(resultsCallback, statsCallback),
+                boundingBoxes(results),
+              ],
+            ),
+            SettingsPage()
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _page,
@@ -88,6 +103,19 @@ class _ScreenControlState extends State<ScreenControl> {
     );
   }
 
+  Widget boundingBoxes(List<Recognition> results) {
+    if (results == null) {
+      return Container();
+    }
+    return Stack(
+      children: results
+          .map((e) => BoxWidget(
+                result: e,
+              ))
+          .toList(),
+    );
+  }
+
   void onPageChanged(int index) {
     setState(() {
       _page = index;
@@ -99,6 +127,19 @@ class _ScreenControlState extends State<ScreenControl> {
       _page = index;
       _pageController.animateToPage(index,
           duration: Duration(milliseconds: 500), curve: Curves.linear);
+    });
+  }
+
+  void resultsCallback(List<Recognition> results) {
+    setState(() {
+      this.results = results;
+    });
+  }
+
+  /// Callback to get inference stats from [CameraView]
+  void statsCallback(Stats stats) {
+    setState(() {
+      this.stats = stats;
     });
   }
 }
