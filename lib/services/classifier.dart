@@ -13,8 +13,8 @@ class Classifier {
   Interpreter _interpreter;
   List<String> _labels;
 
-  static const String MODEL_FILE_NAME = "ibis20.tflite";
-  static const String LABEL_FILE_NAME = "ibis20.txt";
+  static const String MODEL_FILE_NAME = "ibis15.tflite";
+  static const String LABEL_FILE_NAME = "ibis15.txt";
 
   static const int INPUT_SIZE = 640;
 
@@ -24,7 +24,7 @@ class Classifier {
   int padSize;
   List<List<int>> _outputShapes;
   List<TfLiteType> _outputTypes;
-  static const int NUM_RESULTS = 2;
+  static const int NUM_RESULTS = 1;
 
   Classifier({
     Interpreter interpreter,

@@ -46,7 +46,7 @@ class _ScreenControlState extends State<ScreenControl> {
                 boundingBoxes(results),
               ],
             ),
-            SettingsPage()
+            InfoPage()
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -72,7 +72,7 @@ class _ScreenControlState extends State<ScreenControl> {
               ),
             ),
             BottomNavigationBarItem(
-              label: 'Camera',
+              label: 'Kamera',
               icon: Icon(
                 Icons.camera_alt_rounded,
                 size: 32,
@@ -85,14 +85,14 @@ class _ScreenControlState extends State<ScreenControl> {
               ),
             ),
             BottomNavigationBarItem(
-              label: 'Settings',
+              label: 'Informasi',
               icon: Icon(
-                Icons.settings_rounded,
+                Icons.info_rounded,
                 size: 32,
                 color: Color(0xFF868686),
               ),
               activeIcon: Icon(
-                Icons.settings_rounded,
+                Icons.info_rounded,
                 size: 32,
                 color: Color(0xFF6597AF),
               ),

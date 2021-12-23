@@ -2,6 +2,7 @@ import 'dart:isolate';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ibis/services/classifier.dart';
 import 'dart:math' as math;
 
@@ -79,6 +80,27 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                   color: Colors.white,
                 )),
           ],
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: IconButton(
+            icon: Icon(Icons.help_rounded),
+            iconSize: 32,
+            color: Colors.white,
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                        title: Text(
+                          'Deteksi gestur yang didukung',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        content: Text(
+                            'Aku, B, Bayar, Cinta, Doa, G, K, L, O, Pikir, Rumah, T, Takut, Telepon, Uang',
+                            style: Theme.of(context).textTheme.subtitle1),
+                      ));
+            },
+          ),
         ),
         boundingBoxes(results),
       ],

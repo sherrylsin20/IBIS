@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ibis/models/faq.dart';
 
-class SettingsPage extends StatefulWidget {
+class InfoPage extends StatefulWidget {
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _InfoPageState createState() => _InfoPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _InfoPageState extends State<InfoPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
