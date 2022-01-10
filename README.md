@@ -135,17 +135,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
-
+https://user-images.githubusercontent.com/62754325/148746305-54e16640-e0fe-4d2a-bd8b-49cecc7bb68f.mp4
 
 
 <!-- CONTRIBUTING -->
@@ -176,13 +166,11 @@ Sherryl Sugiono Sindarto - [sherrylsin20](https://linkedin.com/in/sherryl-sugion
 Project Link: [IBIS: SIBI Real-time Translator](https://github.com/sherrylsin20/IBIS)
 
 
-
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-
-
+* [Amish Garg for TFLITE Flutter and TFLite Flutter Helper Plugin](https://github.com/am15h)
+* [pikisuperstar @ Freepik for Courses List Illustration](https://www.freepik.com/pikisuperstar)
 
 
 
